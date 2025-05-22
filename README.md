@@ -9,4 +9,4 @@ npm i
 npm run dev
 ```
 ## Grupo
-Christian Einhardt e Victor Amaral
+Christian Einhardt, Eric Corrêa e Victor Amaral

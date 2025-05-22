@@ -14,6 +14,7 @@ type Request = {
   responseHeaders?: Record<string, string>,
   error?: string,
   errorMessage?: string,
+  errorData?: string,
   responseType?: string,
 }
 
@@ -73,12 +74,14 @@ function App() {
         } : r
       ))
     } catch (error) {
+      console.log(error)
       if (axios.isAxiosError(error)) {
         setRequests(prevRequests => prevRequests.map(r => 
           r.id === selectedRequest ? { 
             ...r, 
             error: getErrorMessage(error.response?.status),
             errorMessage: error.message,
+            errorData: error.response?.data ? JSON.stringify(error.response.data) : undefined,
             status: error.response?.status,
             response: error.response?.data ? JSON.stringify(error.response.data) : undefined,
             responseHeaders: error.response?.headers as Record<string, string>
@@ -357,13 +360,7 @@ function App() {
                   <div className="errorContainer">
                     <div className="errorTitle">
                       {requests.find(r => r.id === selectedRequest)?.status && (
-                        <span className="errorStatus" style={{
-                          backgroundColor: '#f44336',
-                          color: 'white',
-                          padding: '2px 6px',
-                          borderRadius: '3px',
-                          marginRight: '8px'
-                        }}>
+                        <span className="errorStatus">
                           {requests.find(r => r.id === selectedRequest)?.status}
                         </span>
                       )}
@@ -372,6 +369,14 @@ function App() {
                     <div className="errorMessage">
                       {requests.find(r => r.id === selectedRequest)?.errorMessage}
                     </div>
+                    {requests.find(r => r.id === selectedRequest)?.errorData && (
+                      <div className="errorData">
+                        <div className="errorDataTitle">Error Details:</div>
+                        <pre className="errorDataContent">
+                          {JSON.stringify(JSON.parse(requests.find(r => r.id === selectedRequest)?.errorData || '{}'), null, 2)}
+                        </pre>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   requests.find(r => r.id === selectedRequest)?.response && (

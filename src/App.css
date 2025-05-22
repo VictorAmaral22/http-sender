@@ -202,22 +202,52 @@
 }
 
 .errorTitle {
-  color: #f44336;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #f44336;
+  font-weight: bold;
+}
+
+.errorStatus {
+  background-color: #f44336;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-family: monospace;
 }
 
 .errorMessage {
   color: #cccccc;
   font-family: monospace;
   font-size: 0.9rem;
+  margin-bottom: 0.5rem;
 }
 
-.errorStatus {
-  font-family: monospace;
+.errorData {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #1c1c1c;
+  border-radius: 4px;
+}
+
+.errorDataTitle {
+  color: #888;
   font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.errorDataContent {
+  margin: 0;
+  padding: 0;
+  color: #f44336;
+  font-family: monospace;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 h1 {
