@@ -1,22 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
-
-type Request = {
-  id: number,
-  name?: string,
-  type: string,
-  url: string,
-  body?: string,
-  response?: string,
-  status?: number,
-  headers?: Record<string, string>,
-  responseHeaders?: Record<string, string>,
-  error?: string,
-  errorMessage?: string,
-  errorData?: string,
-  responseType?: string,
-}
+import type { Request } from './types'
 
 function App() {
   const [requests, setRequests] = useState<Request[]>([])
